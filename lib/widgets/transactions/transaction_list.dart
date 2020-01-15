@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:personal_expenses/models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
-  final List<Transaction> transactions;
-
   TransactionList(this.transactions);
+
+  final List<Transaction> transactions;
 
   @override
   Widget build(BuildContext context) {

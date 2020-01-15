@@ -26,10 +26,14 @@ class _UserTransactionsState extends State<UserTransactions> {
     ),
   ];
 
+  String _processTitle(String title) {
+    return title.length > 0 ? title : 'No title provided';
+  }
+
   void _addNewTransaction(String title, double amount) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
-      title: title,
+      title: _processTitle(title),
       amount: amount,
       date: DateTime.now(),
     );

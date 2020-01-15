@@ -23,7 +23,9 @@ class MyHomePage extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Chart(),
-          UserTransactions(),
+          Expanded(
+            child: UserTransactions(),
+          ),
         ],
       ),
     );

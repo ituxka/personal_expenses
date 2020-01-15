@@ -3,6 +3,8 @@ import 'package:personal_expenses/models/transaction.dart';
 import 'package:personal_expenses/widgets/transactions/new_transaction.dart';
 import 'package:personal_expenses/widgets/transactions/transaction_list.dart';
 
+typedef void NewTransactionCb(String title, double amount);
+
 class UserTransactions extends StatefulWidget {
   @override
   _UserTransactionsState createState() => _UserTransactionsState();
@@ -24,11 +26,24 @@ class _UserTransactionsState extends State<UserTransactions> {
     ),
   ];
 
+  void _addNewTransaction(String title, double amount) {
+    final newTx = Transaction(
+      id: DateTime.now().toString(),
+      title: title,
+      amount: amount,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _userTransactions.add(newTx);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        NewTransaction(),
+        NewTransaction(_addNewTransaction),
         TransactionList(_userTransactions),
       ],
     );

@@ -13,3 +13,5 @@ class Transaction {
     @required this.date,
   });
 }
+
+typedef NewTransactionCb = void Function(String title, double amount);

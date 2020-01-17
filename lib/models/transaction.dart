@@ -25,12 +25,12 @@ class TxModel extends ChangeNotifier {
 
   static get _lastWeek => DateTime.now().subtract(Duration(days: 7));
 
-  void addTx(String title, double amount) {
+  void addTx(String title, double amount, DateTime date) {
     final newTx = Tx(
       id: DateTime.now().toString(),
       title: title,
       amount: amount,
-      date: DateTime.now(),
+      date: date,
     );
     _txs.add(newTx);
 

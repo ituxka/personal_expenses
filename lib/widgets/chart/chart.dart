@@ -27,7 +27,7 @@ class Chart extends StatelessWidget {
         day: _firstLetterOfWeek(weekDay),
         amount: totalAmount,
       );
-    });
+    }).reversed.toList();
   }
 
   static String _firstLetterOfWeek(DateTime weekDay) => formatDate(weekDay, [D])[0].toUpperCase();

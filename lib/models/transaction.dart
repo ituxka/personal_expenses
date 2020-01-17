@@ -21,6 +21,11 @@ class TransactionModel extends ChangeNotifier {
 
   UnmodifiableListView<Transaction> get transactions => UnmodifiableListView(_transactions);
 
+  UnmodifiableListView<Transaction> get recentTransactions =>
+      UnmodifiableListView(_transactions.where((tx) => tx.date.isAfter(_lastWeek)));
+
+  static get _lastWeek => DateTime.now().subtract(Duration(days: 7));
+
   void addTx(String title, double amount) {
     final newTx = Transaction(
       id: DateTime.now().toString(),

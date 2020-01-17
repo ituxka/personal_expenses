@@ -1,6 +1,7 @@
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/models/transaction.dart';
+import 'package:provider/provider.dart';
 
 class TxWidget extends StatelessWidget {
   const TxWidget({
@@ -36,6 +37,13 @@ class TxWidget extends StatelessWidget {
         subtitle: Text(
           formatDate(tx.date, [yyyy, '-', MM, '-', dd]),
           style: TextStyle(color: Colors.grey),
+        ),
+        trailing: Consumer<TxModel>(
+          builder: (_, txModel, __) => IconButton(
+            color: Colors.red,
+            onPressed: () => txModel.deleteTx(tx.id),
+            icon: Icon(Icons.delete),
+          ),
         ),
       ),
     );

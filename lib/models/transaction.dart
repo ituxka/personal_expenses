@@ -36,4 +36,10 @@ class TxModel extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  void deleteTx(String id) {
+    _txs.removeWhere((tx) => tx.id == id);
+
+    notifyListeners();
+  }
 }

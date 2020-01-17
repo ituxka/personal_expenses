@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:personal_expenses/models/transaction.dart';
 import 'package:provider/provider.dart';
 
-class NewTransaction extends StatefulWidget {
+class NewTx extends StatefulWidget {
   @override
-  _NewTransactionState createState() => _NewTransactionState();
+  _NewTxState createState() => _NewTxState();
 }
 
-class _NewTransactionState extends State<NewTransaction> {
+class _NewTxState extends State<NewTx> {
   final amountController = TextEditingController();
   final titleController = TextEditingController();
 
-  void _submitData(BuildContext ctx) {
+  void _submitData(BuildContext context) {
     var text = titleController.text;
     var amount = double.tryParse(amountController.text) ?? 0;
 
@@ -19,9 +19,9 @@ class _NewTransactionState extends State<NewTransaction> {
       return;
     }
 
-    Provider.of<TransactionModel>(ctx, listen: false).addTx(text, amount);
+    Provider.of<TxModel>(context, listen: false).addTx(text, amount);
 
-    Navigator.of(ctx).pop();
+    Navigator.of(context).pop();
   }
 
   @override

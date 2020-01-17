@@ -3,31 +3,31 @@ import 'package:personal_expenses/models/transaction.dart';
 import 'package:personal_expenses/widgets/transactions/transaction.dart';
 import 'package:provider/provider.dart';
 
-class TransactionList extends StatelessWidget {
-  Widget _itemBuilder(List<Transaction> transactions, int index) {
-    return TransactionWidget(
-      tx: transactions[index],
+class TxList extends StatelessWidget {
+  Widget _itemBuilder(List<Tx> txs, int index) {
+    return TxWidget(
+      tx: txs[index],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TransactionModel>(
-      builder: (context, transaction, _) {
-        final List<Transaction> transactions = transaction.transactions;
+    return Consumer<TxModel>(
+      builder: (_, txModel, __) {
+        final List<Tx> txs = txModel.txs;
 
-        return transactions.isEmpty
-            ? noTransactions
+        return txs.isEmpty
+            ? noTxs
             : ListView.builder(
-                itemCount: transactions.length,
-                itemBuilder: (BuildContext _, int index) => _itemBuilder(transactions, index),
+                itemCount: txs.length,
+                itemBuilder: (_, int index) => _itemBuilder(txs, index),
               );
       },
     );
   }
 }
 
-final Widget noTransactions = Column(
+final Widget noTxs = Column(
   children: <Widget>[
     Text('No transactions added yet!'),
     Container(

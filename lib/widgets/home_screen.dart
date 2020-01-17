@@ -3,10 +3,10 @@ import 'package:personal_expenses/widgets/transactions/new_transaction.dart';
 import 'package:personal_expenses/widgets/transactions/user_transactions.dart';
 
 class MyHomePage extends StatelessWidget {
-  void _showNewTransactionArea(BuildContext ctx) {
+  void _showNewTxArea(BuildContext context) {
     showModalBottomSheet(
-      context: ctx,
-      builder: (_) => NewTransaction(),
+      context: context,
+      builder: (_) => NewTx(),
     );
   }
 
@@ -18,15 +18,15 @@ class MyHomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () => _showNewTransactionArea(context),
+            onPressed: () => _showNewTxArea(context),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _showNewTransactionArea(context),
+        onPressed: () => _showNewTxArea(context),
       ),
-      body: UserTransactions(),
+      body: UserTxs(),
     );
   }
 }

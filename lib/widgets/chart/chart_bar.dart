@@ -49,10 +49,10 @@ final Widget barBase = Container(
   ),
 );
 
-final Function barIndicator = (BuildContext ctx) {
+final Function barIndicator = (BuildContext context) {
   return Container(
     decoration: BoxDecoration(
-      color: Theme.of(ctx).primaryColor,
+      color: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(20),
     ),
   );

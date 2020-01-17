@@ -2,13 +2,13 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/models/transaction.dart';
 
-class TransactionWidget extends StatelessWidget {
-  const TransactionWidget({
+class TxWidget extends StatelessWidget {
+  const TxWidget({
     Key key,
     @required this.tx,
   }) : super(key: key);
 
-  final Transaction tx;
+  final Tx tx;
 
   @override
   Widget build(BuildContext context) {

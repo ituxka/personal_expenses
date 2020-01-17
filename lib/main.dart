@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => TransactionModel()),
+        ChangeNotifierProvider(create: (_) => TxModel()),
       ],
       child: MaterialApp(
         theme: ThemeData(

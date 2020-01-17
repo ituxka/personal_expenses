@@ -12,13 +12,13 @@ class TxValueForChart {
 }
 
 class Chart extends StatelessWidget {
-  static List<TxValueForChart> groupedTransactionsValues(BuildContext ctx, List<Transaction> recentTx) {
+  static List<TxValueForChart> groupedTxsValues(List<Tx> recentTx) {
     return List.generate(7, (int index) {
       final weekDay = DateTime.now().subtract(Duration(days: index));
 
       double totalAmount = 0;
       for (var tx in recentTx) {
-        if (_isTransactionInCurrentDay(tx, weekDay)) {
+        if (_isTxInCurrentDay(tx, weekDay)) {
           totalAmount += tx.amount;
         }
       }
@@ -32,7 +32,7 @@ class Chart extends StatelessWidget {
 
   static String _firstLetterOfWeek(DateTime weekDay) => formatDate(weekDay, [D])[0].toUpperCase();
 
-  static bool _isTransactionInCurrentDay(Transaction tx, DateTime targetDay) {
+  static bool _isTxInCurrentDay(Tx tx, DateTime targetDay) {
     if (tx.date.day == targetDay.day && tx.date.month == targetDay.month && tx.date.year == targetDay.year) {
       return true;
     }
@@ -45,12 +45,12 @@ class Chart extends StatelessWidget {
   };
 
   @override
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: Consumer<TransactionModel>(
-        builder: (ctx, transaction, _) {
-          final groupedTxValues = groupedTransactionsValues(ctx, transaction.recentTransactions);
+      child: Consumer<TxModel>(
+        builder: (_, txModel, __) {
+          final groupedTxValues = groupedTxsValues(txModel.recentTxs);
           return Card(
             elevation: 5,
             margin: EdgeInsets.all(20),

@@ -13,48 +13,30 @@ class TxWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Row(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.symmetric(
-              vertical: 10,
-              horizontal: 50,
-            ),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Theme.of(context).primaryColor,
-                width: 2,
-              ),
-            ),
-            child: Text(
-              '\$${tx.amount.toStringAsFixed(2)}',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor,
-              ),
+      elevation: 5,
+      child: ListTile(
+        leading: Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: Theme.of(context).primaryColor,
+              width: 2,
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                tx.title,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                formatDate(tx.date, [yyyy, '-', MM, '-', dd]),
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-            ],
+          child: Text(
+            '\$${tx.amount.toStringAsFixed(2)}',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).primaryColor,
+            ),
           ),
-        ],
+        ),
+        title: Text(tx.title),
+        subtitle: Text(
+          formatDate(tx.date, [yyyy, '-', MM, '-', dd]),
+          style: TextStyle(color: Colors.grey),
+        ),
       ),
     );
   }

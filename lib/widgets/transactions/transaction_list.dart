@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/models/transaction.dart';
 import 'package:personal_expenses/widgets/transactions/transaction.dart';
+import 'package:provider/provider.dart';
 
 class TransactionList extends StatelessWidget {
-  TransactionList(this.transactions);
-
-  final List<Transaction> transactions;
-
-  Widget _itemBuilder(BuildContext ctx, int index) {
+  Widget _itemBuilder(List<Transaction> transactions, int index) {
     return TransactionWidget(
       tx: transactions[index],
     );
@@ -15,9 +12,11 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: transactions.length,
-      itemBuilder: _itemBuilder,
+    return Consumer<TransactionModel>(
+      builder: (context, transaction, _) => ListView.builder(
+        itemCount: transaction.transactions.length,
+        itemBuilder: (BuildContext _, int index) => _itemBuilder(transaction.transactions, index),
+      ),
     );
   }
 }

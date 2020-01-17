@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/models/transaction.dart';
+import 'package:provider/provider.dart';
 
 class NewTransaction extends StatefulWidget {
-  NewTransaction(this.addTransaction);
-
-  final NewTransactionCb addTransaction;
-
   @override
   _NewTransactionState createState() => _NewTransactionState();
 }
@@ -14,7 +11,7 @@ class _NewTransactionState extends State<NewTransaction> {
   final amountController = TextEditingController();
   final titleController = TextEditingController();
 
-  void _submitData() {
+  void _submitData(BuildContext ctx) {
     var text = titleController.text;
     var amount = double.tryParse(amountController.text) ?? 0;
 
@@ -22,12 +19,9 @@ class _NewTransactionState extends State<NewTransaction> {
       return;
     }
 
-    widget.addTransaction(
-      text,
-      amount,
-    );
+    Provider.of<TransactionModel>(ctx, listen: false).addTx(text, amount);
 
-    Navigator.of(context).pop();
+    Navigator.of(ctx).pop();
   }
 
   @override
@@ -41,17 +35,17 @@ class _NewTransactionState extends State<NewTransaction> {
             TextField(
               decoration: InputDecoration(labelText: 'Title'),
               controller: titleController,
-              onSubmitted: (_) => _submitData(),
+              onSubmitted: (_) => _submitData(context),
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
               controller: amountController,
-              onSubmitted: (_) => _submitData(),
+              onSubmitted: (_) => _submitData(context),
               keyboardType: TextInputType.numberWithOptions(decimal: true),
             ),
             FlatButton(
               textColor: Colors.purple,
-              onPressed: () => _submitData(),
+              onPressed: () => _submitData(context),
               child: Text('Add Transaction'),
             )
           ],

@@ -13,33 +13,42 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          height: 20,
-          child: FittedBox(
-            child: Text(
-              '\$${spendingAmount.toStringAsFixed(1)}',
-              style: TextStyle(fontSize: 13),
-            ),
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 4),
-          width: 10,
-          height: 60,
-          child: Stack(
-            children: <Widget>[
-              barBase,
-              FractionallySizedBox(
-                heightFactor: spendingPercentageOfTotal,
-                child: barIndicator(context),
+    return LayoutBuilder(
+      builder: (BuildContext _, BoxConstraints constraints) {
+        return Column(
+          children: <Widget>[
+            Container(
+              height: constraints.maxHeight * 0.2,
+              child: FittedBox(
+                child: Text(
+                  '\$${spendingAmount.toStringAsFixed(1)}',
+                  style: TextStyle(fontSize: 13),
+                ),
               ),
-            ],
-          ),
-        ),
-        Text(label),
-      ],
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 4),
+              width: 10,
+              height: constraints.maxHeight * 0.6,
+              child: Stack(
+                children: <Widget>[
+                  barBase,
+                  FractionallySizedBox(
+                    heightFactor: spendingPercentageOfTotal,
+                    child: barIndicator(context),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: constraints.maxHeight * 0.2,
+              child: FittedBox(
+                child: Text(label),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

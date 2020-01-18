@@ -6,7 +6,16 @@ class MyHomePage extends StatelessWidget {
   void _showNewTxArea(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (_) => NewTx(),
+      isScrollControlled: true,
+      builder: (_) {
+        return SingleChildScrollView(
+            child: Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: NewTx(),
+        ));
+      },
     );
   }
 

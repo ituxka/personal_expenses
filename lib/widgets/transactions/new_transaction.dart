@@ -21,7 +21,8 @@ class _NewTxState extends State<NewTx> {
       return;
     }
 
-    Provider.of<TxModel>(context, listen: false).addTx(text, amount, _selectedDate);
+    Provider.of<TxModel>(context, listen: false)
+        .addTx(text, amount, _selectedDate);
 
     Navigator.of(context).pop();
   }
@@ -63,7 +64,11 @@ class _NewTxState extends State<NewTx> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(_selectedDate != null ? formatDate(_selectedDate, [dd, '/', M, '/', yyyy]) : 'No date chosen!'),
+                  Text(
+                    _selectedDate != null
+                        ? formatDate(_selectedDate, [dd, '/', M, '/', yyyy])
+                        : 'No date chosen!',
+                  ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
                     onPressed: _showDatePicker,
